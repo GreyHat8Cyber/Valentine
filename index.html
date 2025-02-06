@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentines Day</title>
+  <title>Valentine's Day</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .gradient-background {
@@ -26,13 +26,20 @@
         transform: translateY(-10px);
       }
     }
+
+    /* Ensures proper ASCII alignment */
+    #valentineQuestion {
+      white-space: pre-line; /* Keeps line breaks */
+      font-family: monospace; /* Ensures ASCII stays aligned */
+      text-align: center; /* Optional: Centers the text */
+    }
   </style>
 </head>
 <body class="gradient-background">
   <div class="flex items-center justify-center h-screen">
     <div class="flex flex-col items-center p-4">
       <img id="imageDisplay" src="./images/image1.gif" alt="Law" class="rounded-md h-[300px]" style="object-fit: cover;" />
-      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-[#FFFFFF] my-4">Will you be my Valentine?</h2>
+      <pre id="valentineQuestion" class="text-4xl font-bold italic text-[#FFFFFF] my-4">Will you be my Valentine?</pre>
       <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
         <button id="yesButton"
           class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-green-400 min-h-12 min-w-[75px] px-4 py-2 bg-green-500 text-white transition">
@@ -55,9 +62,9 @@
     const responseButtons = document.getElementById('responseButtons');
   
     let noClickCount = 0;
-    let buttonHeight = 48; // Starting height in pixels
+    let buttonHeight = 48; 
     let buttonWidth = 80;
-    let fontSize = 20; // Starting font size in pixels
+    let fontSize = 20; 
     const imagePaths = [
       "./images/image1.gif",
       "./images/image2.gif",
@@ -72,22 +79,24 @@
       if (noClickCount < 5) {
         noClickCount++;
         imageDisplay.src = imagePaths[noClickCount];
-        buttonHeight += 35; // Increase height by 5px on each click
+        buttonHeight += 35; 
         buttonWidth += 35;
-        fontSize += 25; // Increase font size by 1px on each click
-        yesButton.style.height = `${buttonHeight}px`; // Update button height
+        fontSize += 25; 
+        yesButton.style.height = `${buttonHeight}px`; 
         yesButton.style.width = `${buttonWidth}px`;
-        yesButton.style.fontSize = `${fontSize}px`; // Update font size
+        yesButton.style.fontSize = `${fontSize}px`;
         if (noClickCount < 6) {
-          noButton.textContent = ["No", "Are You Sure?", "Are You Really Sure?", "Really Sure?", "Just Checking Maybe You Change your Choice", "Machigai nai desu ka?"][noClickCount];
+          noButton.textContent = ["No", "Are You Sure?", "Are You Really Sure?", "Really Sure?", "Just Checking Maybe You Change Your Choice", "Machigai nai desu ka?"][noClickCount];
         }
       }
     });
   
     yesButton.addEventListener('click', () => {
       imageDisplay.src = './images/image7.gif';
-      valentineQuestion.textContent = "Yes. If you see this message, I will wait for you on messenger\n" + "/\\_/\\  \n" + "( ^ᴗ^ ) \n" + "> ♡ <";
-
+      valentineQuestion.textContent = `Yes, the power of IT works hihihihi. If you see this message, I will wait for you on messenger\n  
+         /\\_/\\  
+        ( ^ᴗ^ )  
+         > ♡ <`;
       responseButtons.style.display = 'none';
       confetti();
     });
